@@ -1,26 +1,16 @@
 /**
  * Created by ratul on 12/11/2014.
  */
-public class InsertionSort {
+public class Insertion {
 
-    public static void insertionSort(Comparable[] arr) {
+    public static void sort(Comparable[] arr) {
         for (int i = 0; i < arr.length; i++) {
             for (int j = i; j > 0; j--) {
-                if (less(arr[j], arr[j-1]))
-                    swap(arr, j, j-1);
+                if (SortUtils.less(arr[j], arr[j - 1]))
+                    SortUtils.swap(arr, j, j - 1);
                 else break;
             }
         }
-    }
-
-    public static boolean less(Comparable a, Comparable b) {
-        return a.compareTo(b) < 0;
-    }
-
-    public static void swap(Comparable[] arr, int i, int j) {
-        Comparable temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
     }
 
     public static void main(String[] args) {
@@ -30,7 +20,7 @@ public class InsertionSort {
         }
 
         System.out.println();
-        insertionSort(arr);
+        sort(arr);
         for (int i : arr) {
             System.out.println(i);
         }
