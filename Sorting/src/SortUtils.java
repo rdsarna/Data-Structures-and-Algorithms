@@ -1,3 +1,5 @@
+import java.util.Random;
+
 /**
  * Created by ratul on 12/14/2014.
  */
@@ -19,5 +21,14 @@ public class SortUtils {
                 return false;
         }
         return true;
+    }
+
+    public static void shuffle(Comparable[] arr) {
+        Random random = new Random();
+
+        for (int i = 0; i < arr.length; i++) {
+            int randomInt = random.nextInt(i + 1);
+            swap(arr, i, randomInt);
+        }
     }
 }
