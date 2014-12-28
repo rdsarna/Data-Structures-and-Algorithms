@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 /**
  * Created by ratul on 12/27/2014.
  */
@@ -10,8 +12,19 @@ public class MaxPQ<Key extends Comparable<Key>> {
      * Creates an empty priority queue.
      */
     public MaxPQ() {
-        arr = (Key[]) new Object[11];
+        arr = (Key[]) new Comparable[11];
         N = 0;
+    }
+
+    /**
+     * Copy constructor that makes a deep copy of the
+     * given MaxPQ.
+     * @param copy MaxPQ whose copy is to be constructed.
+     */
+    public MaxPQ(MaxPQ<Key> copy) {
+        this.arr = (Key[]) new Comparable[copy.arr.length];
+        System.arraycopy(copy.arr, 0, this.arr, 0, copy.arr.length);
+        this.N = copy.N;
     }
 
     /**
@@ -86,6 +99,39 @@ public class MaxPQ<Key extends Comparable<Key>> {
             SortUtils.swap(arr, index/2, index);
             index /= 2;
         }
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        result.append("[");
+        MaxPQ<Key> copyPQ = new MaxPQ<Key>(this);
+        while (!copyPQ.isEmpty()) {
+            result.append(copyPQ.delMax().toString());
+            result.append(", ");
+        }
+        result.delete(result.length() - 2, result.length());
+        result.append("]");
+        return result.toString();
+    }
+
+    public static void main(String[] args) {
+        MaxPQ<String> pq = new MaxPQ<String>();
+        pq.insert("T");
+        pq.insert("A");
+        pq.insert("S");
+        pq.insert("V");
+        pq.insert("M");
+        pq.insert("J");
+        pq.insert("B");
+        pq.insert("R");
+        pq.insert("Z");
+
+        System.out.println(pq.delMax());
+        System.out.println(pq.toString());
+        System.out.println(pq.delMax());
+        System.out.println(pq.delMax());
+        System.out.println(pq.toString());
     }
 
 }
