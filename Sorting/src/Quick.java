@@ -3,12 +3,12 @@
  */
 public class Quick {
 
-    public void sort(Comparable[] arr) {
+    public static void sort(Comparable[] arr) {
         SortUtils.shuffle(arr);
         sort(arr, 0, arr.length - 1);
     }
 
-    private void sort(Comparable[] arr, int lo, int hi) {
+    private static void sort(Comparable[] arr, int lo, int hi) {
         if (lo >= hi) return;
 
         int partition = partition(arr, lo, hi);
@@ -36,6 +36,22 @@ public class Quick {
         SortUtils.swap(arr, lo, j);
 
         return j;
+    }
+
+    public static Comparable select(Comparable[] arr, int k) {
+        SortUtils.shuffle(arr);
+
+        int lo = 0;
+        int hi = arr.length - 1;
+
+        while (lo < hi) {
+            int partition = partition(arr, lo, hi);
+
+            if (k < partition) hi = partition - 1;
+            else if (k > partition) lo = partition + 1;
+            else return arr[k];
+        }
+        return arr[k];
     }
 
 }

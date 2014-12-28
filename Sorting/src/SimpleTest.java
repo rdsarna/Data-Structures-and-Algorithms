@@ -7,8 +7,11 @@ public class SimpleTest {
             System.out.println(i);
         }
 
+        Integer fourthHighest = (Integer) Quick.select(arr, 3);
+        System.out.println("\n" + fourthHighest);
+
         System.out.println();
-        Merge.sortIterative(arr);
+        Quick.sort(arr);
         for (int i : arr) {
             System.out.println(i);
         }
